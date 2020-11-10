@@ -10,6 +10,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 
+/** ベースとなるlabelコンポーネント */
 @Component
 export default class BaseLabel extends Vue {}
 </script>

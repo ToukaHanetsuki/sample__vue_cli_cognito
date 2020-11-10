@@ -1,23 +1,20 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-    <InputTextSubmit
-      v-model="text"
-      label="テキスト"
-      submit-text="確認"
-      :click-event="submit"
-    />
-  </div>
+  <AboutTemplate
+    v-model="text"
+    :click-event="submit"
+  />
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import InputTextSubmit from '@/components/organisms/search/InputTextSubmit.vue';
-import { ExampleCodeUtils } from '../plugins/exampleCodeUtils';
+import InputSearch from '@/components/molecules/search/InputSearch.vue';
+import AboutTemplate from '@/components/templates/AboutTemplate.vue';
+import { ExampleCodeUtils } from '@/plugins/exampleCodeUtils';
 
 @Component({
   components: {
-    InputTextSubmit
+    InputSearch,
+    AboutTemplate
   }
 })
 export default class About extends Vue {

@@ -48,8 +48,7 @@ module.exports = {
       'ForInStatement',
       'ForOfStatement',
       'LabeledStatement',
-      'WithStatement',
-      'VariableDeclaration[kind="let"]'
+      'WithStatement'
     ]
   },
   overrides: [

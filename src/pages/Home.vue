@@ -1,29 +1,20 @@
 <template>
-  <div class="home">
-    <img
-      alt="Vue logo"
-      src="../assets/logo.png"
-    >
-    <HelloWorld :msg="message" />
-
-    <p>{{ counter }}</p>
-    <button @click="increment">
-      increment
-    </button>
-    <button @click="decrement">
-      decrement
-    </button>
-  </div>
+  <HomeTemplate
+    :message="message"
+    :counter="counter"
+    @increment="increment"
+    @decrement="decrement"
+  />
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { counterModule } from '@/store/modules/counter';
-import HelloWorld from '@/components/templates/HelloWorld.vue';
+import HomeTemplate from '@/components/templates/HomeTemplate.vue';
 
 @Component({
   components: {
-    HelloWorld
+    HomeTemplate
   }
 })
 export default class Home extends Vue {

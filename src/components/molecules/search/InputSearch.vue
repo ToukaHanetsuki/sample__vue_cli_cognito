@@ -18,11 +18,12 @@
 <script lang="ts">
 import { Component, Prop } from 'vue-property-decorator';
 import SubmitButton from '@/components/atoms/button/SubmitButton.vue';
-import BaseLabel from '@/components/atoms/form/BaseLabel.vue';
-import BaseInputText from '@/components/atoms/form/BaseInputText.vue';
+import BaseLabel from '@/components/atoms/label/BaseLabel.vue';
+import BaseInputText from '@/components/atoms/input/BaseInputText.vue';
 import { mixins } from 'vue-class-component';
 import { InternalValueMixin } from '@/mixins/InternalValueMixin';
 
+/** 検索バーコンポーネント */
 @Component({
   components: {
     SubmitButton,
@@ -30,7 +31,7 @@ import { InternalValueMixin } from '@/mixins/InternalValueMixin';
     BaseInputText
   }
 })
-export default class InputTextSubmit extends mixins(InternalValueMixin) {
+export default class InputSearch extends mixins<InternalValueMixin<string>>(InternalValueMixin) {
   @Prop({ required: true }) private submitText!: string;
   @Prop({ required: true }) private label!: string;
   @Prop({ required: true }) private clickEvent!: (e: Event) => Promise<unknown>;

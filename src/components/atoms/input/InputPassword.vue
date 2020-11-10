@@ -1,27 +1,27 @@
 <template>
-  <input
+  <BaseInputText
     v-model="internalValue"
-    class="input-text"
-    type="text"
+    type="password"
     v-bind="$attrs"
-    @keydown.enter="trigger"
-  >
+    @enter="enter"
+  />
 </template>
 
 <script lang="ts">
 import { Component, Emit } from 'vue-property-decorator';
 import { mixins } from 'vue-class-component';
 import { InternalValueMixin } from '@/mixins/InternalValueMixin';
+import BaseInputText from './BaseInputText.vue';
 
-@Component
-export default class BaseInputText extends mixins(InternalValueMixin) {
+/** input[type=password]コンポーネント */
+@Component({
+  components: {
+    BaseInputText
+  }
+})
+export default class InputPassword extends mixins(InternalValueMixin) {
   @Emit() private enter(e: KeyboardEvent): KeyboardEvent {
     return e;
-  }
-
-  private trigger(e: KeyboardEvent): void {
-    if (e.keyCode !== 13) return;
-    this.enter(e);
   }
 }
 </script>

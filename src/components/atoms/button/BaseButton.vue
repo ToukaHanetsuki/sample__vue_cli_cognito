@@ -11,6 +11,7 @@
 <script lang="ts">
 import { Component, Vue, Emit } from 'vue-property-decorator';
 
+/** ベースとなるbuttonコンポーネント */
 @Component
 export default class BaseButton extends Vue {
   @Emit() private click(e: Event): Event {

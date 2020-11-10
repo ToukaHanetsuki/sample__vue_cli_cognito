@@ -1,32 +1,63 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 import queryString from 'query-string';
+import beforeResolve from './beforeResolve';
+import { signOut } from './signOut';
+import { ROUTE_NAME } from '@/constants/routeName';
 
 // pages
 import Home from '@/pages/Home.vue';
-import ExampleSort from '@/pages/ExampleSort.vue';
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: ROUTE_NAME.ROUTE,
+    redirect: 'Home'
+  },
+  {
+    path: '/home',
+    name: ROUTE_NAME.HOME,
+    component: Home,
+    meta: { requiredAuth: true }
   },
   {
     path: '/about',
-    name: 'About',
+    name: ROUTE_NAME.ABOUT,
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    component: (): any => import(/* webpackChunkName: "about" */ '../pages/About.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../pages/About.vue'),
+    meta: { requiredAuth: true }
   },
   {
-    path: '/example_sort',
-    name: 'ExampleSort',
-    component: ExampleSort
+    path: '/signup',
+    name: ROUTE_NAME.SIGN_UP,
+    component: () => import(/* webpackChunkName: "sign-up" */ '@/pages/SignUp.vue'),
+    meta: { notRequiredAuth: true }
+  },
+  {
+    path: '/confirmation',
+    name: ROUTE_NAME.CONFIRMATION,
+    component: () => import(/* webpackChunkName: "confirmation" */ '@/pages/Confirmation.vue'),
+    meta: { notRequiredAuth: true }
+  },
+  {
+    path: '/signin',
+    name: ROUTE_NAME.SIGN_IN,
+    component: () => import(/* webpackChunkName: "sign-in" */ '@/pages/SignIn.vue'),
+    meta: { notRequiredAuth: true }
+  },
+  {
+    path: '/signout',
+    name: ROUTE_NAME.SIGN_OUT,
+    beforeEnter: signOut
+  },
+  {
+    path: '*',
+    name: ROUTE_NAME.NOT_FOUND,
+    component: () => import(/* webpackChunkName: "not-found" */ '@/pages/NotFound.vue')
   }
 ];
 
@@ -51,5 +82,7 @@ const router = new VueRouter({
   },
   routes
 });
+
+router.beforeResolve(beforeResolve);
 
 export default router;
