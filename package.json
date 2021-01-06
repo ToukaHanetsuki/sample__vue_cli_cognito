@@ -12,7 +12,7 @@
   "dependencies": {
     "amazon-cognito-identity-js": "^4.5.2",
     "aws-sdk": "^2.783.0",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "js-cookie": "^2.2.1",
     "modern-css-reset": "^1.1.1",
